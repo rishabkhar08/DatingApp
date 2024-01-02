@@ -1,0 +1,25 @@
+.btn {
+  text-decoration: none;
+  color: rgba(255, 253, 253, 0.8);
+  background: rgb(129, 13, 211);
+  border-radius: 4px;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+
+.glow-btn:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px rgba(80, 51, 100, 0.4);
+}
+
+.dropdown:hover .dropdown-toggle {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.dropdown-menu {
+  background-color: #343a40;
+}
+
+.dropdown-item:hover {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { User } from '../_models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   model: any = {}
 
-  constructor(private accountService : AccountService) {
+  constructor(private accountService : AccountService, private toastr: ToastrService) {
 
   }
 
@@ -20,13 +21,19 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.model);
+    // Check if any required fields are empty
+    if (!this.model.username || !this.model.password || !this.model.email) {
+      this.toastr.error('Please fill in all required fields.');
+      return; // Do not proceed with registration if fields are not filled
+    }
     this.accountService.register(this.model).subscribe({
       next: (response) => {
         console.log(response);
         this.cancel();
       },
-      error: (error) => console.log(error)
+      error: (errorMsg) => {
+        this.toastr.error(errorMsg.error), console.log(errorMsg);
+      },
     });
   }
 

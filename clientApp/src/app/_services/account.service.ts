@@ -16,6 +16,7 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   register(model: any) {
+    debugger
     return this.http.post<User>(this.baseUrl + 'account/register',model).pipe(
       map(user => {
         if(user){
